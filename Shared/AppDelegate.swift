@@ -1,16 +1,7 @@
-/*
-	Copyright (C) 2017 Apple Inc. All Rights Reserved.
-	See LICENSE.txt for this sample’s licensing information
-	
-	Abstract:
-	Manages app lifecycle  split view.
- */
-
 import UIKit
-import Photos
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+final class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDelegate {
     var window: UIWindow?
 
     func application(
@@ -20,15 +11,41 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if self.window == nil {
             self.window = UIWindow(frame: UIScreen.main.bounds)
         }
-        
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        if let tabBarController = storyboard.instantiateViewController(withIdentifier: "TabBarController") as? UITabBarController {
-            
-            self.window?.rootViewController = tabBarController
-            self.window?.makeKeyAndVisible()
 
-            return true
+        let tabBarController = UITabBarController()
+
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let splitViewController = storyboard.instantiateViewController(withIdentifier: "PhotosSplitViewController") as? UISplitViewController else {
+            fatalError("Could not find PhotosSplitViewController in storyboard.")
         }
-        return false
+        
+        splitViewController.delegate = self
+        
+        #if os(iOS)
+            if let navigationController = splitViewController.viewControllers.last as? UINavigationController {
+                navigationController.topViewController?.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem
+            }
+        #endif
+        
+        let redditTableViewController = RedditListTableViewController()
+        
+        splitViewController.tabBarItem = UITabBarItem(
+            title: "Photos",
+            image: UIImage(systemName: "photo.on.rectangle"),
+            tag: 0
+        )
+        
+        redditTableViewController.tabBarItem = UITabBarItem(
+            title: "Reddit",
+            image: UIImage(systemName: "list.bullet"),
+            tag: 1
+        )
+        
+        tabBarController.viewControllers = [splitViewController, redditTableViewController]
+        
+        self.window?.rootViewController = tabBarController
+        self.window?.makeKeyAndVisible()
+
+        return true
     }
 }
