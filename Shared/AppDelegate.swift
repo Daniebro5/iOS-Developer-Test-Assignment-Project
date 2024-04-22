@@ -1,54 +1,51 @@
-/*
-	Copyright (C) 2017 Apple Inc. All Rights Reserved.
-	See LICENSE.txt for this sample’s licensing information
-	
-	Abstract:
-	Manages app lifecycle  split view.
- */
-
-
 import UIKit
-import Photos
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDelegate {
-
+final class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDelegate {
     var window: UIWindow?
 
-
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]?) -> Bool {
-        // Override point for customization after application launch.
-        let splitViewController = self.window!.rootViewController as! UISplitViewController
-        #if os(iOS)
-            let navigationController = splitViewController.viewControllers.last! as! UINavigationController
-            navigationController.topViewController!.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem
-        #endif
-        splitViewController.delegate = self
-        return true
-    }
-
-    // MARK: Split view
-
-    func splitViewController(_ splitViewController: UISplitViewController, collapseSecondary secondaryViewController:UIViewController, onto primaryViewController:UIViewController) -> Bool {
-        guard let secondaryAsNavController = secondaryViewController as? UINavigationController else { return false }
-        guard let topAsDetailController = secondaryAsNavController.topViewController as? AssetGridViewController else { return false }
-        if topAsDetailController.fetchResult == nil {
-            // Return true to indicate that we have handled the collapse by doing nothing; the secondary controller will be discarded.
-            return true
+    func application(
+        _ application: UIApplication,
+        didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
+    ) -> Bool {
+        if self.window == nil {
+            self.window = UIWindow(frame: UIScreen.main.bounds)
         }
-        return false
-    }
 
-    func splitViewController(_ splitViewController: UISplitViewController, showDetail vc: UIViewController, sender: Any?) -> Bool {
-        // Let the storyboard handle the segue for every case except going from detail:assetgrid to detail:asset.
-        guard !splitViewController.isCollapsed else { return false }
-        guard !(vc is UINavigationController) else { return false }
-        guard let detailNavController =
-            splitViewController.viewControllers.last! as? UINavigationController,
-            detailNavController.viewControllers.count == 1
-            else { return false }
+        let tabBarController = UITabBarController()
 
-        detailNavController.pushViewController(vc, animated: true)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let splitViewController = storyboard.instantiateViewController(withIdentifier: "PhotosSplitViewController") as? UISplitViewController else {
+            fatalError("Could not find PhotosSplitViewController in storyboard.")
+        }
+        
+        splitViewController.delegate = self
+        
+        #if os(iOS)
+            if let navigationController = splitViewController.viewControllers.last as? UINavigationController {
+                navigationController.topViewController?.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem
+            }
+        #endif
+        
+        let redditTableViewController = RedditListTableViewController()
+        
+        splitViewController.tabBarItem = UITabBarItem(
+            title: "Photos",
+            image: UIImage(systemName: "photo.on.rectangle"),
+            tag: 0
+        )
+        
+        redditTableViewController.tabBarItem = UITabBarItem(
+            title: "Reddit",
+            image: UIImage(systemName: "list.bullet"),
+            tag: 1
+        )
+        
+        tabBarController.viewControllers = [splitViewController, redditTableViewController]
+        
+        self.window?.rootViewController = tabBarController
+        self.window?.makeKeyAndVisible()
+
         return true
     }
 }
