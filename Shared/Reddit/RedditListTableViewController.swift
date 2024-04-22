@@ -17,9 +17,9 @@ final class RedditListTableViewController: UITableViewController, RedditViewMode
     }
     
     private func setupTableView() {
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellReuseIdentifier)
+        tableView.register(RedditTableViewCell.self, forCellReuseIdentifier: cellReuseIdentifier)
         tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = 44.0
+        tableView.estimatedRowHeight = 60.0
     }
     
     override func viewDidLoad() {
@@ -32,9 +32,15 @@ final class RedditListTableViewController: UITableViewController, RedditViewMode
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as? RedditTableViewCell else {
+            return UITableViewCell()
+        }
+        
         let redditPost = viewModel.redditPosts[indexPath.row]
-        cell.textLabel?.text = redditPost.title
+        cell.titleLabel.text = redditPost.title
+        cell.authorLabel.text = "By: \(redditPost.author)"
+        cell.commentCountLabel.text = "Comments: \(redditPost.num_comments)"
+        cell.scoreLabel.text = "Score: \(redditPost.score)"
         return cell
     }
     
@@ -51,9 +57,13 @@ final class RedditListTableViewController: UITableViewController, RedditViewMode
                 self.tableView.reloadData()
             }
         } else {
-            let alert = UIAlertController(title: "Error", message: "Failed to fetch Reddit data.", preferredStyle: .alert)
+            let alert = UIAlertController(
+                title: "Error",
+                message: "Failed to fetch Reddit data.",
+                preferredStyle: .alert
+            )
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            present(alert, animated: true, completion: nil)
+            present(alert, animated: true)
         }
     }
 }
