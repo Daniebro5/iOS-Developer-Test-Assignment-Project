@@ -20,7 +20,19 @@
 		9525DEDC2BD71E4D00C2A814 /* RedditResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9525DEDB2BD71E4D00C2A814 /* RedditResponse.swift */; };
 		9525DEDF2BD71F1800C2A814 /* RedditService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9525DEDE2BD71F1800C2A814 /* RedditService.swift */; };
 		9525DEE12BD7292A00C2A814 /* RedditTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9525DEE02BD7292A00C2A814 /* RedditTableViewCell.swift */; };
+		9525DEE92BD72BA200C2A814 /* RedditViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9525DEE82BD72BA200C2A814 /* RedditViewModelTests.swift */; };
+		9525DEF12BD72C6500C2A814 /* MockRedditService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9525DEF02BD72C6500C2A814 /* MockRedditService.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		9525DEEA2BD72BA200C2A814 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 118FE10A1CEF0525004F2F51 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 118FE1111CEF0525004F2F51;
+			remoteInfo = "SamplePhotosApp iOS";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		118FE1121CEF0525004F2F51 /* SamplePhotosApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SamplePhotosApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -39,10 +51,20 @@
 		9525DEDB2BD71E4D00C2A814 /* RedditResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedditResponse.swift; sourceTree = "<group>"; };
 		9525DEDE2BD71F1800C2A814 /* RedditService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedditService.swift; sourceTree = "<group>"; };
 		9525DEE02BD7292A00C2A814 /* RedditTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedditTableViewCell.swift; sourceTree = "<group>"; };
+		9525DEE62BD72BA200C2A814 /* SamplePhotosAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SamplePhotosAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9525DEE82BD72BA200C2A814 /* RedditViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedditViewModelTests.swift; sourceTree = "<group>"; };
+		9525DEF02BD72C6500C2A814 /* MockRedditService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockRedditService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		118FE10F1CEF0525004F2F51 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9525DEE32BD72BA200C2A814 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -58,6 +80,7 @@
 				119E70161CF3CC1700F01BF5 /* README.md */,
 				118FE13C1CEF07EB004F2F51 /* Shared */,
 				118FE1141CEF0525004F2F51 /* iOS */,
+				9525DEE72BD72BA200C2A814 /* SamplePhotosAppTests */,
 				118FE1131CEF0525004F2F51 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -66,6 +89,7 @@
 			isa = PBXGroup;
 			children = (
 				118FE1121CEF0525004F2F51 /* SamplePhotosApp.app */,
+				9525DEE62BD72BA200C2A814 /* SamplePhotosAppTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -106,6 +130,23 @@
 			path = Reddit;
 			sourceTree = "<group>";
 		};
+		9525DEE72BD72BA200C2A814 /* SamplePhotosAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				9525DEEF2BD72C5E00C2A814 /* Mocks */,
+				9525DEE82BD72BA200C2A814 /* RedditViewModelTests.swift */,
+			);
+			path = SamplePhotosAppTests;
+			sourceTree = "<group>";
+		};
+		9525DEEF2BD72C5E00C2A814 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				9525DEF02BD72C6500C2A814 /* MockRedditService.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -126,6 +167,24 @@
 			productReference = 118FE1121CEF0525004F2F51 /* SamplePhotosApp.app */;
 			productType = "com.apple.product-type.application";
 		};
+		9525DEE52BD72BA200C2A814 /* SamplePhotosAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9525DEEC2BD72BA200C2A814 /* Build configuration list for PBXNativeTarget "SamplePhotosAppTests" */;
+			buildPhases = (
+				9525DEE22BD72BA200C2A814 /* Sources */,
+				9525DEE32BD72BA200C2A814 /* Frameworks */,
+				9525DEE42BD72BA200C2A814 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9525DEEB2BD72BA200C2A814 /* PBXTargetDependency */,
+			);
+			name = SamplePhotosAppTests;
+			productName = SamplePhotosAppTests;
+			productReference = 9525DEE62BD72BA200C2A814 /* SamplePhotosAppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -133,7 +192,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
-				LastSwiftUpdateCheck = 0800;
+				LastSwiftUpdateCheck = 1530;
 				LastUpgradeCheck = 1530;
 				ORGANIZATIONNAME = Apple;
 				TargetAttributes = {
@@ -141,6 +200,10 @@
 						CreatedOnToolsVersion = 8.0;
 						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
+					};
+					9525DEE52BD72BA200C2A814 = {
+						CreatedOnToolsVersion = 15.3;
+						TestTargetID = 118FE1111CEF0525004F2F51;
 					};
 				};
 			};
@@ -158,6 +221,7 @@
 			projectRoot = "";
 			targets = (
 				118FE1111CEF0525004F2F51 /* SamplePhotosApp iOS */,
+				9525DEE52BD72BA200C2A814 /* SamplePhotosAppTests */,
 			);
 		};
 /* End PBXProject section */
@@ -170,6 +234,13 @@
 				118FE1221CEF0525004F2F51 /* LaunchScreen.storyboard in Resources */,
 				118FE11F1CEF0525004F2F51 /* Assets.xcassets in Resources */,
 				118FE11D1CEF0525004F2F51 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9525DEE42BD72BA200C2A814 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -193,7 +264,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9525DEE22BD72BA200C2A814 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9525DEE92BD72BA200C2A814 /* RedditViewModelTests.swift in Sources */,
+				9525DEF12BD72C6500C2A814 /* MockRedditService.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		9525DEEB2BD72BA200C2A814 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 118FE1111CEF0525004F2F51 /* SamplePhotosApp iOS */;
+			targetProxy = 9525DEEA2BD72BA200C2A814 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		118FE11B1CEF0525004F2F51 /* Main.storyboard */ = {
@@ -365,6 +453,58 @@
 			};
 			name = Release;
 		};
+		9525DEED2BD72BA200C2A814 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.espn.enterprise.SamplePhotosAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SamplePhotosApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SamplePhotosApp";
+			};
+			name = Debug;
+		};
+		9525DEEE2BD72BA200C2A814 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.espn.enterprise.SamplePhotosAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SamplePhotosApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SamplePhotosApp";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -382,6 +522,15 @@
 			buildConfigurations = (
 				118FE1271CEF0525004F2F51 /* Debug */,
 				118FE1281CEF0525004F2F51 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9525DEEC2BD72BA200C2A814 /* Build configuration list for PBXNativeTarget "SamplePhotosAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9525DEED2BD72BA200C2A814 /* Debug */,
+				9525DEEE2BD72BA200C2A814 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
